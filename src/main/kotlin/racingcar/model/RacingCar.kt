@@ -18,6 +18,10 @@ class RacingCar(private val name: String) {
         }
     }
 
+    fun getName() = name
+
+    fun getNumberOfStep() = numberOfStep
+
     override fun toString(): String {
         return "$name : ${STEP.repeat(numberOfStep)}"
     }

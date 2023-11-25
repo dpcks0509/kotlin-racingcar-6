@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.RacingCar
+import racingcar.model.Winner
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -13,6 +14,9 @@ class RacingCarController {
         val numberOfAttempts = inputView.readNumberOfAttempts()
 
         getAttemptsResult(racingCars, numberOfAttempts)
+
+        val winner = Winner()
+        winner.judgeWinners(racingCars)
     }
 
     private fun makeRacingCars(racingCarNames: List<String>): List<RacingCar> {
