@@ -27,4 +27,18 @@ object Validator {
     private fun validateRacingCarNamesNoDuplicate(racingCarNames: List<String>) {
         require(racingCarNames.size == racingCarNames.toSet().size) { Exception.INVALID_RACING_CAR_NAME_NO_DUPLICATE.getMessage() }
     }
+
+    fun validateNumberOfAttempts(numberOfAttempts: String): Int {
+        validateNumberOfAttemptsFormat(numberOfAttempts)
+        validateNumberOfAttemptsRange(numberOfAttempts)
+        return numberOfAttempts.toInt()
+    }
+
+    private fun validateNumberOfAttemptsFormat(numberOfAttempts: String) {
+        requireNotNull(numberOfAttempts.toIntOrNull()) { Exception.INVALID_NUMBER_OF_ATTEMPTS_FORMAT.getMessage() }
+    }
+
+    private fun validateNumberOfAttemptsRange(numberOfAttempts: String) {
+        require(numberOfAttempts.toInt() >= 1) { Exception.INVALID_NUMBER_OF_ATTEMPTS_RANGE.getMessage() }
+    }
 }

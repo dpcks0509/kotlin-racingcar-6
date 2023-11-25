@@ -9,5 +9,6 @@ class RacingCarController {
 
     fun run() {
         inputView.readRacingCarNames()
+        inputView.readNumberOfAttempts()
     }
 }
