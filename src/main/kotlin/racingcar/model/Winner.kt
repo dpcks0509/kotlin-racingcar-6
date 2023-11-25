@@ -9,18 +9,16 @@ class Winner {
         }
     }
 
-    fun judgeWinners(racingCars: List<RacingCar>) {
+    fun judgeWinner(racingCars: List<RacingCar>) {
         val maximumNumberOfStep = getMaximumNumberOfStep(racingCars)
         val winners = racingCars.filter { racingCar ->
             racingCar.getNumberOfStep() == maximumNumberOfStep
         }
 
-        winners.forEach { winner ->
-            names.add(winner.getName())
-        }
+        names.addAll(winners.map { winner -> winner.getName() })
     }
 
     override fun toString(): String {
-        return names.joinToString(",")
+        return "최종 우승자 : ${names.joinToString(", ")}"
     }
 }

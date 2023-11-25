@@ -15,8 +15,7 @@ class RacingCarController {
 
         getAttemptsResult(racingCars, numberOfAttempts)
 
-        val winner = Winner()
-        winner.judgeWinners(racingCars)
+        getWinner(racingCars)
     }
 
     private fun makeRacingCars(racingCarNames: List<String>): List<RacingCar> {
@@ -35,5 +34,12 @@ class RacingCarController {
             }
             outputView.printAttemptsResult(racingCars)
         }
+    }
+
+    private fun getWinner(racingCars: List<RacingCar>) {
+        val winner = Winner()
+        winner.judgeWinner(racingCars)
+
+        outputView.printWinner(winner)
     }
 }

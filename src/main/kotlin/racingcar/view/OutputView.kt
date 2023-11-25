@@ -1,6 +1,7 @@
 package racingcar.view
 
 import racingcar.model.RacingCar
+import racingcar.model.Winner
 
 class OutputView {
     fun printAttemptsResultHeader() {
@@ -13,5 +14,9 @@ class OutputView {
             println(racingCar)
         }
         println()
+    }
+
+    fun printWinner(winner: Winner) {
+        print(winner)
     }
 }
