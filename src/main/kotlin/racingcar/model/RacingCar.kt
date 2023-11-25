@@ -1,4 +1,4 @@
 package racingcar.model
 
-class Car {
+class RacingCar {
 }
