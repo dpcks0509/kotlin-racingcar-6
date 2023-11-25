@@ -8,6 +8,6 @@ class RacingCarController {
     private val outputView = OutputView()
 
     fun run() {
-
+        inputView.readRacingCarNames()
     }
 }
