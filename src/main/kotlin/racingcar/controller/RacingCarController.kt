@@ -11,11 +11,8 @@ class RacingCarController {
     fun run() {
         val racingCars = makeRacingCars(inputView.readRacingCarNames())
         val numberOfAttempts = inputView.readNumberOfAttempts()
-        for (i in 0 until numberOfAttempts) {
-            racingCars.forEach { racingCar ->
-                racingCar.judgeMoveOrStop()
-            }
-        }
+
+        getAttemptsResult(racingCars, numberOfAttempts)
     }
 
     private fun makeRacingCars(racingCarNames: List<String>): List<RacingCar> {
@@ -24,5 +21,15 @@ class RacingCarController {
             racingCars.add(RacingCar(racingCarName))
         }
         return racingCars
+    }
+
+    private fun getAttemptsResult(racingCars: List<RacingCar>, numberOfAttempts: Int) {
+        outputView.printAttemptsResultHeader()
+        for (i in 0 until numberOfAttempts) {
+            racingCars.forEach { racingCar ->
+                racingCar.judgeMoveOrStop()
+            }
+            outputView.printAttemptsResult(racingCars)
+        }
     }
 }
