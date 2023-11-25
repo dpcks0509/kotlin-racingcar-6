@@ -1,5 +1,8 @@
 package racingcar.util
 
+import racingcar.util.Constants.MINIMUM_NUMBER_OF_ATTEMPTS
+import racingcar.util.Constants.MAXIMUM_RACING_CAR_NAME_LENGTH
+
 object Validator {
     fun validateRacingCarNames(racingCarNames: String): List<String> {
         val validRacingCarNames = racingCarNames.split(",")
@@ -17,7 +20,7 @@ object Validator {
     }
 
     private fun validateRacingCarNameRange(racingCarName: String) {
-        require(racingCarName.length <= 5) { Exception.INVALID_RACING_CAR_NAME_RANGE.getMessage() }
+        require(racingCarName.length <= MAXIMUM_RACING_CAR_NAME_LENGTH) { Exception.INVALID_RACING_CAR_NAME_RANGE.getMessage() }
     }
 
     private fun validateRacingCarNameNotEmpty(racingCarName: String) {
@@ -39,6 +42,6 @@ object Validator {
     }
 
     private fun validateNumberOfAttemptsRange(numberOfAttempts: String) {
-        require(numberOfAttempts.toInt() >= 1) { Exception.INVALID_NUMBER_OF_ATTEMPTS_RANGE.getMessage() }
+        require(numberOfAttempts.toInt() >= MINIMUM_NUMBER_OF_ATTEMPTS) { Exception.INVALID_NUMBER_OF_ATTEMPTS_RANGE.getMessage() }
     }
 }
