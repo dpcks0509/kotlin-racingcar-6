@@ -1,9 +1,12 @@
 package racingcar
 
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.model.RacingCar
 import racingcar.util.Validator.validateNumberOfAttempts
 import racingcar.util.Validator.validateRacingCarNames
 
@@ -54,5 +57,27 @@ class RacingCarTest {
     @ValueSource(strings = ["-1", "0"])
     fun `시도할 횟수 입력 예외처리 (시도할 횟수는 1이상의 숫자여야 한다)`(numberOfAttempts: String) {
         assertThrows<IllegalArgumentException> { validateNumberOfAttempts(numberOfAttempts) }
+    }
+
+    @Test
+    fun `자동차 전진`() {
+        val racingCar = RacingCar("pobi")
+        val expectNumberOfStep = 1
+
+        racingCar.judgeMoveOrStop(4)
+        val actualNumberOfStep = racingCar.getNumberOfStep()
+
+        assertThat(actualNumberOfStep).isEqualTo(expectNumberOfStep)
+    }
+
+    @Test
+    fun `자동차 정지`() {
+        val racingCar = RacingCar("pobi")
+        val expectNumberOfStep = 0
+
+        racingCar.judgeMoveOrStop(3)
+        val actualNumberOfStep = racingCar.getNumberOfStep()
+
+        assertThat(actualNumberOfStep).isEqualTo(expectNumberOfStep)
     }
 }
