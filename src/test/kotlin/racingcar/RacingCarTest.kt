@@ -7,6 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.model.RacingCar
+import racingcar.model.Winner
 import racingcar.util.Validator.validateNumberOfAttempts
 import racingcar.util.Validator.validateRacingCarNames
 
@@ -79,5 +80,37 @@ class RacingCarTest {
         val actualNumberOfStep = racingCar.getNumberOfStep()
 
         assertThat(actualNumberOfStep).isEqualTo(expectNumberOfStep)
+    }
+
+    @Test
+    fun `최종 우승자 1명`() {
+        val pobi = RacingCar("pobi")
+        val woni = RacingCar("woni")
+        val racingCars = listOf(pobi, woni)
+        val winner = Winner()
+        val expectWinner = "최종 우승자 : pobi"
+
+        pobi.judgeMoveOrStop(4)
+        woni.judgeMoveOrStop(3)
+        winner.judgeWinner(racingCars)
+        val actualWinner = winner.toString()
+
+        assertThat(actualWinner).isEqualTo(expectWinner)
+    }
+
+    @Test
+    fun `최종 우승자 여러명`() {
+        val pobi = RacingCar("pobi")
+        val woni = RacingCar("woni")
+        val racingCars = listOf(pobi, woni)
+        val winner = Winner()
+        val expectWinner = "최종 우승자 : pobi, woni"
+
+        pobi.judgeMoveOrStop(4)
+        woni.judgeMoveOrStop(4)
+        winner.judgeWinner(racingCars)
+        val actualWinner = winner.toString()
+
+        assertThat(actualWinner).isEqualTo(expectWinner)
     }
 }
