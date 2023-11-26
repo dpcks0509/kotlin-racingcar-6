@@ -1,7 +1,9 @@
 package racingcar.controller
 
+import camp.nextstep.edu.missionutils.Randoms
 import racingcar.model.RacingCar
 import racingcar.model.Winner
+import racingcar.util.Constants
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -26,11 +28,15 @@ class RacingCarController {
         return racingCars
     }
 
+    private fun generateRandomNumber(): Int {
+        return Randoms.pickNumberInRange(Constants.MINIMUM_RANDOM_NUMBER, Constants.MAXIMUM_RANDOM_NUMBER)
+    }
+
     private fun getAttemptsResult(racingCars: List<RacingCar>, numberOfAttempts: Int) {
         outputView.printAttemptsResultHeader()
         for (i in 0 until numberOfAttempts) {
             racingCars.forEach { racingCar ->
-                racingCar.judgeMoveOrStop()
+                racingCar.judgeMoveOrStop(generateRandomNumber())
             }
             outputView.printAttemptsResult(racingCars)
         }
